@@ -1,25 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
-Route::get('/', function () {
-    $products = [
-        ['name' => 'Laravel Hoodie', 'price' => '$59.99', 'image' => 'https://laravel.com/img/merch/hoodie-black.png'],
-        ['name' => 'Laravel T-Shirt', 'price' => '$29.99', 'image' => 'https://laravel.com/img/merch/tshirt-black.png'],
-        ['name' => 'Laravel Cap', 'price' => '$24.99', 'image' => 'https://laravel.com/img/merch/cap-black.png'],
-    ];
+// use Illuminate\Support\Facades\Route;
 
-    return view('welcome', compact('products'));
-});
+Route::get('/home', [HomeController::class, 'HomeSection'])->name('home');
 
-Route::get('/products', function () {
-    return view('products');
-});
+Route::get('/products', [ProductController::class, 'viewProducts']);
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('/addProduct', [ProductController::class, 'addProduct']);
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::get('/cart', [CartController::class, 'viewCart']);
